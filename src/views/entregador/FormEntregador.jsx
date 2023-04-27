@@ -119,7 +119,6 @@ class FormEntregador extends React.Component{
                                     >
                                         <InputMask 
                                             mask="99/99/9999" 
-                                            maskChar={null}
                                             placeholder="Ex: 20/03/1985"
 											value={this.state.dataNascimento}
 											onChange={e => this.setState({dataNascimento: e.target.value})}
@@ -152,9 +151,9 @@ class FormEntregador extends React.Component{
                                     <Form.Input
 										fluid
 										label='Qntd entregas realizadas'
-                                        width={4}>
+                                        width={4}
 										value={this.state.qtdEntregasRealizadas}
-										onChange={e => this.setState({qtdEntregasRealizadas: e.target.value})}
+										onChange={e => this.setState({qtdEntregasRealizadas: e.target.value})}>
 									</Form.Input>
 
                                     <Form.Input
