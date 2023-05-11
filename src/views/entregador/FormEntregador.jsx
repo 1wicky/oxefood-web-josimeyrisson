@@ -118,7 +118,6 @@ class FormEntregador extends React.Component{
                                         width={6}
                                     >
                                         <InputMask 
-                                            mask="99/99/9999" 
                                             placeholder="Ex: 20/03/1985"
 											value={this.state.dataNascimento}
 											onChange={e => this.setState({dataNascimento: e.target.value})}
