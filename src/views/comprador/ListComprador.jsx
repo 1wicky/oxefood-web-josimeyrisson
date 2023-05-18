@@ -3,11 +3,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button, Container, Divider, Icon, Table } from 'semantic-ui-react';
 
-class ListEntregador extends React.Component{
+class ListComprador extends React.Component{
 
    state = {
 
-       listaEntregadores: []
+       listaCompradores: []
       
    }
 
@@ -19,11 +19,11 @@ class ListEntregador extends React.Component{
  
    carregarLista = () => {
 
-    axios.get("http://localhost:8082/api/entregador")
+    axios.get("http://localhost:8082/api/comprador")
     .then((response) => {
        
         this.setState({
-            listaEntregadores: response.data
+            listaCompradores: response.data
         })
     })
 
@@ -46,7 +46,7 @@ render(){
 
                 <Container textAlign='justified' >
 
-                    <h2> Entregador </h2>
+                    <h2> Comprador </h2>
 
                     <Divider />
 
@@ -61,7 +61,7 @@ render(){
                             floated='right'
                         >
                             <Icon name='clipboard outline' />
-                            <Link to={'/form-entregador'}>Novo</Link>
+                            <Link to={'/form-comprador'}>Novo</Link>
                         </Button>
                        
                         <br/><br/><br/>
@@ -70,25 +70,29 @@ render(){
 
                           <Table.Header>
                               <Table.Row>
+                                  <Table.HeaderCell>ID</Table.HeaderCell>
                                   <Table.HeaderCell>Nome</Table.HeaderCell>
-                                  <Table.HeaderCell>CPF</Table.HeaderCell>
-                                  <Table.HeaderCell>Data de Nascimento</Table.HeaderCell>
-                                  <Table.HeaderCell>Fone Celular</Table.HeaderCell>
-                                  <Table.HeaderCell>Fone Fixo</Table.HeaderCell>
+                                  <Table.HeaderCell>Valor de Comissão</Table.HeaderCell>
+                                  <Table.HeaderCell>QTD Compras em Média no Mês</Table.HeaderCell>
+                                  <Table.HeaderCell>Contratado Em</Table.HeaderCell>
+                                  <Table.HeaderCell>Endereço Residencial</Table.HeaderCell>
+                                  <Table.HeaderCell>Endereço Comercial</Table.HeaderCell>
                                   <Table.HeaderCell textAlign='center' width={2}>Ações</Table.HeaderCell>
                               </Table.Row>
                           </Table.Header>
                      
                           <Table.Body>
 
-                              { this.state.listaEntregadores.map(entregador => (
+                              { this.state.listaCompradores.map(comprador => (
 
                                   <Table.Row>
-                                      <Table.Cell>{entregador.nome}</Table.Cell>
-                                      <Table.Cell>{entregador.cpf}</Table.Cell>
-                                      <Table.Cell>{this.formatarData(entregador.dataNascimento)}</Table.Cell>
-                                      <Table.Cell>{entregador.foneCelular}</Table.Cell>
-                                      <Table.Cell>{entregador.foneFixo}</Table.Cell>
+                                      <Table.Cell>{comprador.id}</Table.Cell>
+                                      <Table.Cell>{comprador.nome}</Table.Cell>
+                                      <Table.Cell>{comprador.comissao}</Table.Cell>
+                                      <Table.Cell>{comprador.qtdComprasMediasMes}</Table.Cell>
+                                      <Table.Cell>{this.formatarData(comprador.contratadoEm)}</Table.Cell>
+                                      <Table.Cell>{comprador.enderecoResidencial}</Table.Cell>
+                                      <Table.Cell>{comprador.enderecoComercial}</Table.Cell>
                                       <Table.Cell textAlign='center'>
                                          
                                           <Button
@@ -96,13 +100,13 @@ render(){
                                               circular
                                               icon='edit'
                                               color='blue'
-                                              itle='Clique aqui para editar os dados deste entregador' /> &nbsp;
+                                              itle='Clique aqui para editar os dados deste comprador' /> &nbsp;
                                           <Button
                                                    inverted
                                                    circular
                                                    icon='trash'
                                                    color='red'
-                                                   title='Clique aqui para remover este entregador' />
+                                                   title='Clique aqui para remover este comprador' />
 
                                            </Table.Cell>
                                        </Table.Row>
@@ -118,4 +122,4 @@ render(){
    }
 }
 
-export default ListEntregador;
+export default ListComprador;
